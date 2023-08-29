@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+
+    <bean id="helloWorld" class="pl.coderslab.beans.HelloWorld">
+        <!--        wstrzyknięcie poniżej za pomocą konstruktora-->
+        <!--        <constructor-arg value="Witaj Spring"/>-->
+
+        <!--        poniżej wstrzyknięcie napisu "Witaj spring odbywa się za pomocą metody ustawiającej(czyli setter)-->
+        <property name="message" value="Witaj spring-by setter"/>
+    </bean>
+
+
+    <!--    wstrzyknięcie za pomocą konstruktora obiektu klasy EmailService-->
+    <!--    Dla ziarna messageSender, za pomocą tagu constructor-arg oraz atrybutu ref, określamy jaki bean ma zostać wstrzyknięty w konstruktorze (patrz -> MessageSender). (EmailService implementuje MessageService)-->
+    <bean id="emailService" class="pl.coderslab.beans.EmailService"/>
+    <bean id="messageSender" class="pl.coderslab.beans.MessageSender">
+        <constructor-arg ref="emailService"/>
+        <property name="message" value="Message from xml"/>
+    </bean>
+
+
+</beans>
